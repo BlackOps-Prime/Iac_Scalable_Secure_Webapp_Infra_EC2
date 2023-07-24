@@ -155,3 +155,14 @@ resource "aws_eip_association" "jumpbox_association" {
   instance_id   = "${join("\",\"",  module.bastian_host.ec2_instances_ids)}"
   allocation_id = module.vpc.Jumpbox_eip
 }
+
+
+module "ec2_autoscalling" {
+  source = "./modules/autoscalling"
+
+  global_var_name_tag_prefix = var.global_var_name_tag_prefix
+  var_ec2_instance_purpose = var.var_ec2_app_instance_purpose
+  var_ec2_instance_type = var.var_ec2_instance_type
+  var_asg_traffic_source_identifier = module.loadbalancing.app_target_group_arn
+  var_asg_security_group_name = module.security_groups.private_subnets_security_group_name
+}

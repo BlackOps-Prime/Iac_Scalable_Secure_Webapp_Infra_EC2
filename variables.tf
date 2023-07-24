@@ -102,3 +102,5 @@ variable "var_public_subnet_allow_egress_traffic" {}
 variable "var_database_subnet_allow_http_traffic_type" {}
 
 variable "var_database_subnet_egress_http_traffic_type" {}
+
+# variable "var_ec2_autoscalling_image_ami" {}

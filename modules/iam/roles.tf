@@ -28,7 +28,10 @@ resource "aws_iam_policy_attachment" "app_role_policy_attachment" {
 
   for_each = toset([
     "arn:aws:iam::${local.account_id}:policy/${var.global_var_name_tag_prefix}-s3-readwrite-policy",
-    "arn:aws:iam::${local.account_id}:policy/${var.global_var_name_tag_prefix}-ecr-readwrite-policy"
+    "arn:aws:iam::${local.account_id}:policy/${var.global_var_name_tag_prefix}-ecr-readwrite-policy",
+    "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+    "arn:aws:iam::aws:policy/AmazonSSMPatchAssociation"
+
   ])
 
   policy_arn = each.value
