@@ -64,6 +64,11 @@ From the root module, run:
     terraform apply -var-file=development.tfvars -auto-approve   #Apply plan and auto approve apply action.
     ```
 
+## Clean Up
+To cleanup after running tests, run:
+```bash
+terraform destroy -var-file=development.tfvars -auto-approve
+```
 
 # Modules
 ## VPC
