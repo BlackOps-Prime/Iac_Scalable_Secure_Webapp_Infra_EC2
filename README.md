@@ -33,6 +33,8 @@ The setup is made out of three layers. The database layer, application or busine
 
 To ensure secure commnuication between layers, security groups are used to define traffic rules. For instance, the Database subnets only allow traffic from the application subnet's security group and the bastian host to ensure only the appropriate entities can connect to perform operations.
 
+![Architecture](./Cloudgnr.png)
+
 ------------------------------------------
 
 ## Terraform Permisions
