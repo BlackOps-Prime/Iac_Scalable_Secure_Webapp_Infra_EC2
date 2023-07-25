@@ -70,12 +70,10 @@ From the root module, run:
 
     terraform workspace select development   # Switch to development workspsace
 
-    terraform plan -var-file=development.tfvars  # Generate a plan for your infrastructure
+    terraform plan -var-file development.tfvars  # Generate a plan for your infrastructure
 
-    terraform apply -var-file=development.tfvars -auto-approve   #Apply plan and auto approve apply action.
+    terraform apply -var-file development.tfvars -auto-approve   #Apply plan and auto approve apply action.
     ```
-
-*NOTE:*  If you encounter an error regarding duplicate security group rules, you will need to identify and manually remove the offending/missing security group rules from the Security Group, and re-plan and apply with Terraform. This is an issue identified by terraform and will likely be included in an upcoming fix. Please track issue [here](https://github.com/hashicorp/terraform/pull/2376)
 
 
 ## Clean Up
@@ -99,7 +97,7 @@ This module creates load balancers and target groups.
 A simple note here: The target groups attachment have been commented out because I believe it is rather best to let the deployment method control the target group attachment. However, you can tweak it to your liking.
 
 ## Roles & IAM
-The IAM module grants Session manager access to the instances for session management as well as S3 and ECR for operational activities [That is, assuming the web application runs in docker and stores files in s3 to avoid data loss from ephemeral docker storage].
+The IAM module grants `Session manager` access to the instances for session management as well as S3 and ECR for operational activities [That is, assuming the web application runs in docker and stores files in s3 to avoid data loss from ephemeral docker storage].
 
 ## EC2
 The EC2 module creates servers that would run the application and well as bastian and eventually proxies.

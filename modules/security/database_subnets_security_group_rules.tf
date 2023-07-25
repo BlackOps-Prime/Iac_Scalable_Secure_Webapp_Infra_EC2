@@ -26,11 +26,11 @@ resource "aws_security_group_rule" "allow_jumpbox_to_database" {
   security_group_id = aws_security_group.database_traffic_rules.id
 }
 
-resource "aws_security_group_rule" "allow_http_egress_traffic_for_db_subnet" {
+resource "aws_security_group_rule" "allow_egress_traffic_for_db_subnet" {
   type              = var.var_database_subnet_egress_http_traffic_type
   from_port         = var.var_db_security_group_main_rds_egress_port
   to_port           = var.var_db_security_group_main_rds_egress_port
   protocol          = var.var_db_security_group_egress_protocol
+  cidr_blocks       = [var.var_app_security_group_egress_cidr]
   security_group_id = aws_security_group.database_traffic_rules.id
-  source_security_group_id = aws_security_group.application_traffic_rules.id
 }

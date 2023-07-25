@@ -24,7 +24,7 @@ module "security_groups" {
 
   var_main_vpc_id                                   = module.vpc.main_vpc_id
   global_var_name_tag_prefix                        = var.global_var_name_tag_prefix
-  var_ec2_jumpbox_elastic_ip                        = "${module.vpc.Jumpbox_eip}/32"
+  var_ec2_jumpbox_elastic_ip                        = "${module.bastian_host.ec2_instances_private_ip}/32"
   var_app_security_group_http_ingress_port               = var.var_app_security_group_http_ingress_port
   var_app_security_group_http_ingress_protocol           = var.var_app_security_group_http_ingress_protocol
   var_application_subnet_allow_http_traffic = var.var_application_subnet_allow_http_traffic
@@ -69,28 +69,28 @@ module "iam" {
   var_ec2_instance_profile_name = var.var_ec2_instance_profile_name
 }
 
-module "app_instances" {
-  source = "./modules/ec2"
+# module "app_instances" {
+#   source = "./modules/ec2"
 
-  count                               = var.var_ec2_instances_count
-  global_var_name_tag_prefix          = var.global_var_name_tag_prefix
-  var_ec2_instance_type               = var.var_ec2_instance_type
-  var_ec2_associate_public_ip         = var.var_app_ec2_associate_public_ip
-  var_ec2_availability_zones          = element(module.vpc.region_availability_zones, count.index)
-  var_ec2_instance_ebs_optimized      = var.var_ec2_instance_ebs_optimized
-  var_ec2_iam_instance_profile        = module.iam.ec2_instance_profile
-  var_ec2_instance_key_pair_name      = var.var_ec2_instance_key_pair_name
-  var_ec2_instance_security_groups    = [module.security_groups.private_subnets_security_group_id]
-  var_ec2_instance_subnet_id          = "${element(module.vpc.private_app_subnets, count.index)}"
-  var_ec2_ebs_volume_size             = var.var_ec2_ebs_volume_size
-  var_ec2_ebs_volume_type             = var.var_ec2_ebs_volume_type
-  var_ec2_instance_monitoring_enabled = var.var_ec2_instance_monitoring_enabled
-  var_ec2_instance_purpose = var.var_ec2_app_instance_purpose
+#   count                               = var.var_ec2_instances_count
+#   global_var_name_tag_prefix          = var.global_var_name_tag_prefix
+#   var_ec2_instance_type               = var.var_ec2_instance_type
+#   var_ec2_associate_public_ip         = var.var_app_ec2_associate_public_ip
+#   var_ec2_availability_zones          = element(module.vpc.region_availability_zones, count.index)
+#   var_ec2_instance_ebs_optimized      = var.var_ec2_instance_ebs_optimized
+#   var_ec2_iam_instance_profile        = module.iam.ec2_instance_profile
+#   var_ec2_instance_key_pair_name      = var.var_ec2_instance_key_pair_name
+#   var_ec2_instance_security_groups    = [module.security_groups.private_subnets_security_group_id]
+#   var_ec2_instance_subnet_id          = "${element(module.vpc.private_app_subnets, count.index)}"
+#   var_ec2_ebs_volume_size             = var.var_ec2_ebs_volume_size
+#   var_ec2_ebs_volume_type             = var.var_ec2_ebs_volume_type
+#   var_ec2_instance_monitoring_enabled = var.var_ec2_instance_monitoring_enabled
+#   var_ec2_instance_purpose = var.var_ec2_app_instance_purpose
 
 
 
-  depends_on = [module.vpc, module.security_groups, module.iam]
-}
+#   depends_on = [module.vpc, module.security_groups, module.iam]
+# }
 
 module "bastian_host" {
   source = "./modules/ec2"
@@ -112,7 +112,7 @@ module "bastian_host" {
 
 
 
-  depends_on = [module.vpc, module.security_groups, module.iam]
+  depends_on = [module.vpc, module.iam]
 }
 
 module "dns" {
@@ -164,5 +164,8 @@ module "ec2_autoscalling" {
   var_ec2_instance_purpose = var.var_ec2_app_instance_purpose
   var_ec2_instance_type = var.var_ec2_instance_type
   var_asg_traffic_source_identifier = module.loadbalancing.app_target_group_arn
-  var_asg_security_group_name = module.security_groups.private_subnets_security_group_name
+  var_asg_security_group_id = module.security_groups.private_subnets_security_group_id
+  var_asg_vpc_zone_subnets_identifier = [for subnet in module.vpc.private_app_subnets : tostring(subnet)]
+  var_ec2_instance_key_pair_name = var.var_ec2_instance_key_pair_name
+  var_ec2_instance_profile_name = var.var_ec2_instance_profile_name
 }

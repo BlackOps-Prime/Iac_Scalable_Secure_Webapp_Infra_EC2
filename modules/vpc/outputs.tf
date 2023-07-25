@@ -4,7 +4,7 @@ output "main_vpc_id" {
 
 output "Jumpbox_eip" {
 
-  value = aws_eip.Jumpbox_eip.private_ip
+  value = aws_eip.Jumpbox_eip.id
 }
 
 output "public_nat_gateway_subnets" {

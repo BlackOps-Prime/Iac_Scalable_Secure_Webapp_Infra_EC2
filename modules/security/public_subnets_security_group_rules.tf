@@ -24,7 +24,7 @@ resource "aws_security_group_rule" "allow_egress_traffic_for_public_subnet" {
   to_port           = var.var_public_subnet_security_group_egress_port
   protocol          = var.var_public_subnet_security_group_egress_protocol
   cidr_blocks       = [var.var_public_subnet_security_group_egress_cidr]
-  security_group_id = aws_security_group.application_traffic_rules.id
+  security_group_id = aws_security_group.public_subnet_traffic_rules.id
 }
 
 resource "aws_security_group_rule" "allow_ssh_inbound_traffic_into_jumpbox" {

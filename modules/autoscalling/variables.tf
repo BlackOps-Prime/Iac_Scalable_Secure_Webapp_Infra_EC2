@@ -40,7 +40,7 @@ variable "var_ec2_instance_desired_min" {
 }
 
 variable "var_ec2_instance_desired_max" {
-  default = 1
+  default = 5
   description = "EC2 Instance desired max"
 }
 
@@ -70,6 +70,18 @@ variable "var_asg_traffic_source_type" {
   description = "ASG Traffic Source Identifier"
 }
 
-variable "var_asg_security_group_name" {
+variable "var_asg_security_group_id" {
   description = "ASG Security Group"
+}
+
+variable "var_asg_vpc_zone_subnets_identifier" {
+  description = "ASG VPC subnets list"
+}
+
+variable "var_ec2_instance_key_pair_name" {
+  description = "ASG instance key pair"
+}
+
+variable "var_ec2_instance_profile_name" {
+  description = "ASG IAM Profile"
 }
