@@ -104,7 +104,7 @@ module "bastian_host" {
   var_ec2_iam_instance_profile        = module.iam.ec2_instance_profile
   var_ec2_instance_key_pair_name      = var.var_ec2_instance_key_pair_name
   var_ec2_instance_security_groups    = [module.security_groups.public_subnets_security_group_id]
-  var_ec2_instance_subnet_id          = module.vpc.public_nat_gateway_subnets[0].id
+  var_ec2_instance_subnet_id          = module.vpc.public_nat_gateway_subnets[2].id
   var_ec2_ebs_volume_size             = var.var_ec2_ebs_volume_size
   var_ec2_ebs_volume_type             = var.var_ec2_ebs_volume_type
   var_ec2_instance_monitoring_enabled = var.var_ec2_instance_monitoring_enabled
