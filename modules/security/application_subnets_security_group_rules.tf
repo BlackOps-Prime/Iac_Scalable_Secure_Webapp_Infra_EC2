@@ -12,11 +12,11 @@ resource "aws_security_group" "application_traffic_rules" {
 }
 
 resource "aws_security_group_rule" "allow_http_inbound_traffic_into_app_subnet" {
-  type              = var.var_application_subnet_allow_http_traffic
-  from_port         = var.var_app_security_group_http_ingress_port
-  to_port           = var.var_app_security_group_http_ingress_port
-  protocol          = var.var_app_security_group_http_ingress_protocol
-  security_group_id = aws_security_group.application_traffic_rules.id
+  type                     = var.var_application_subnet_allow_http_traffic
+  from_port                = var.var_app_security_group_http_ingress_port
+  to_port                  = var.var_app_security_group_http_ingress_port
+  protocol                 = var.var_app_security_group_http_ingress_protocol
+  security_group_id        = aws_security_group.application_traffic_rules.id
   source_security_group_id = aws_security_group.public_subnet_traffic_rules.id
 }
 

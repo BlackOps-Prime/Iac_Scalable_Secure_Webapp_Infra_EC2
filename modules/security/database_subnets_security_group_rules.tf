@@ -9,11 +9,11 @@ resource "aws_security_group" "database_traffic_rules" {
 }
 
 resource "aws_security_group_rule" "allow_inbound_traffic_into_database_subnet" {
-  type              = var.var_database_subnet_allow_http_traffic_type
-  from_port         = var.var_db_security_group_main_rds_ingress_port
-  to_port           = var.var_db_security_group_main_rds_ingress_port
-  protocol          = var.var_db_security_group_ingress_protocol
-  security_group_id = aws_security_group.database_traffic_rules.id
+  type                     = var.var_database_subnet_allow_http_traffic_type
+  from_port                = var.var_db_security_group_main_rds_ingress_port
+  to_port                  = var.var_db_security_group_main_rds_ingress_port
+  protocol                 = var.var_db_security_group_ingress_protocol
+  security_group_id        = aws_security_group.database_traffic_rules.id
   source_security_group_id = aws_security_group.application_traffic_rules.id
 }
 

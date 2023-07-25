@@ -143,6 +143,6 @@ variable "var_database_subnet_egress_http_traffic_type" {
 
 variable "var_public_subnet_security_group_jumpbox_ingress_port" {
   type        = number
-  default = 22
+  default     = 22
   description = "Public Subnet Jumpbox Ingres Port"
 }

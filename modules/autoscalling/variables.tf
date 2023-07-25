@@ -30,34 +30,34 @@ variable "var_ec2_instance_type" {
 }
 
 variable "var_ec2_instance_desired_capacity" {
-  default = 3
+  default     = 3
   description = "EC2 Instance desired capacity"
 }
 
 variable "var_ec2_instance_desired_min" {
-  default = 1
+  default     = 1
   description = "EC2 Instance desired min"
 }
 
 variable "var_ec2_instance_desired_max" {
-  default = 5
+  default     = 5
   description = "EC2 Instance desired max"
 }
 
 variable "var_ec2_launch_template_version" {
   type        = string
-  default = "$Latest"
+  default     = "$Latest"
   description = "EC2 Instance launch template version"
 }
 
 variable "var_asg_health_check_type" {
   type        = string
-  default = "ELB"
+  default     = "ELB"
   description = "ASG Health Check Type"
 }
 
 variable "var_asg_health_check_grace_period" {
-  default = 10
+  default     = 10
   description = "ASG Health Check Grace Period"
 }
 
@@ -66,7 +66,7 @@ variable "var_asg_traffic_source_identifier" {
 }
 
 variable "var_asg_traffic_source_type" {
-  default = "elbv2"
+  default     = "elbv2"
   description = "ASG Traffic Source Identifier"
 }
 

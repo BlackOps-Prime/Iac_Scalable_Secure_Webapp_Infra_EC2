@@ -18,7 +18,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = var.global_var_ird_region
+  region  = var.global_var_ird_region
   profile = var.global_var_aws_profile
 
   default_tags {

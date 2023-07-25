@@ -14,7 +14,7 @@ resource "aws_iam_role" "main_app_readwrite_role" {
     ]
   })
 
-  depends_on = [ aws_iam_policy.main_ecr_policy, aws_iam_policy.main_s3_policy  ]
+  depends_on = [aws_iam_policy.main_ecr_policy, aws_iam_policy.main_s3_policy]
 
   tags = {
     Name = "${var.global_var_name_tag_prefix}-app-role"
@@ -37,5 +37,5 @@ resource "aws_iam_policy_attachment" "app_role_policy_attachment" {
   policy_arn = each.value
   roles      = [aws_iam_role.main_app_readwrite_role.name]
 
-  depends_on = [ aws_iam_policy.main_ecr_policy, aws_iam_policy.main_s3_policy ]
+  depends_on = [aws_iam_policy.main_ecr_policy, aws_iam_policy.main_s3_policy]
 }

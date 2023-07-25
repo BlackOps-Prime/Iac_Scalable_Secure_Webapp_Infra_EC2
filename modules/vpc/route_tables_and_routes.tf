@@ -51,7 +51,7 @@ resource "aws_route" "private_nat_gateway_route" {
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gateway.id
 
-  depends_on = [ aws_nat_gateway.nat_gateway ]
+  depends_on = [aws_nat_gateway.nat_gateway]
 }
 
 # Public route table connects to internet gateway
