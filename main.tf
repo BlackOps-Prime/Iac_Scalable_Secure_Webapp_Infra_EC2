@@ -136,13 +136,15 @@ module "rds" {
   global_var_name_tag_prefix                    = var.global_var_name_tag_prefix
   var_rds_cluster_aurora_master_username        = var.var_rds_cluster_aurora_master_username
   var_rds_cluster_aurora_database_name          = var.var_rds_cluster_aurora_database_name
-  var_rds_cluster_aurora_availability_zones     = var.var_rds_cluster_aurora_availability_zones
+  # var_rds_cluster_aurora_availability_zones     = var.var_rds_cluster_aurora_availability_zones
+  var_rds_cluster_aurora_availability_zones     = [for az in module.vpc.region_availability_zones : tostring(az)]
   var_rds_cluster_aurora_instance_class         = var.var_rds_cluster_aurora_instance_class
   var_rds_cluster_engine                        = var.var_rds_cluster_engine
   var_rds_cluster_storage_type                  = var.var_rds_cluster_storage_type
   var_rds_cluster_allocated_storage             = var.var_rds_cluster_allocated_storage
   var_rds_cluster_storage_ios                   = var.var_rds_cluster_storage_ios
-  var_rds_subnet_group_member_ids               = [module.vpc.private_app_subnets[0], module.vpc.private_app_subnets[1], module.vpc.private_app_subnets[2]]
+  # var_rds_subnet_group_member_ids               = [module.vpc.private_app_subnets[0], module.vpc.private_app_subnets[1], module.vpc.private_app_subnets[2]]
+  var_rds_subnet_group_member_ids               = [for subnet in  module.vpc.private_app_subnets : tostring(subnet)]
   var_rds_cluster_port                          = var.var_rds_cluster_port
   var_rds_skip_final_snapshot                   = var.var_rds_skip_final_snapshot
   rds_vpc_security_group_id                     = module.security_groups.database_subnets_security_group_id

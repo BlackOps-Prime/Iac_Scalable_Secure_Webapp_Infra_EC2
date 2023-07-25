@@ -2,8 +2,8 @@
 
 sudo apt update -y
 
-add-apt-repository ppa:nginx/stable
+sudo add-apt-repository ppa:nginx/stable
 
-apt update -y
+sudo apt update -y
 
-apt install nginx -y
+sudo apt install nginx -y
