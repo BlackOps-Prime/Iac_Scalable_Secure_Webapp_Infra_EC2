@@ -37,6 +37,59 @@ To ensure secure commnuication between layers, security groups are used to defin
 
 ------------------------------------------
 
+## Folder Structure
+```bash
+├── Cloudgnr.png
+├── README.md
+├── _main.tf
+├── development.tfvars
+├── errored.tfstate
+├── main.tf
+├── modules
+│   ├── autoscalling
+│   │   ├── autoscalling.tf
+│   │   ├── variables.tf
+│   │   └── webserver.sh
+│   ├── dns
+│   │   ├── records.tf
+│   │   ├── variables.tf
+│   │   └── zones.tf
+│   ├── ec2
+│   │   ├── instances.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── iam
+│   │   ├── outputs.tf
+│   │   ├── policies.tf
+│   │   ├── profiles.tf
+│   │   ├── roles.tf
+│   │   └── variables.tf
+│   ├── loadbalancing
+│   │   ├── loadbalancers.tf
+│   │   ├── outputs.tf
+│   │   ├── target_groups.tf
+│   │   └── variables.tf
+│   ├── rds
+│   │   ├── rds.tf
+│   │   └── variables.tf
+│   ├── security
+│   │   ├── application_subnets_security_group_rules.tf
+│   │   ├── database_subnets_security_group_rules.tf
+│   │   ├── ec2_key_pairs.tf
+│   │   ├── outputs.tf
+│   │   ├── public_subnets_security_group_rules.tf
+│   │   └── variables.tf
+│   ├── vault
+│   └── vpc
+│       ├── gateways.tf
+│       ├── outputs.tf
+│       ├── route_tables_and_routes.tf
+│       ├── subnets.tf
+│       ├── variables.tf
+│       └── vpc.tf
+└── variables.tf
+```
+
 ## Terraform Permisions
 To successfully run this project, your profile should have enough permissions to perform CRUD operations to the services listed above.
 
