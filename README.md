@@ -5,7 +5,7 @@ This project is designed to create a an AWS environment that will host a new web
 behind a load balancer, and an RDS instance, ensuring secure communication
 between them.
 
-The architecture is designed with resiliency in mind. It makes use of Multi-AZs for redundancy, autoscalling for scaling and loadbalancing for load management.
+The architecture is designed with resiliency in mind. It makes use of Multi-AZs for for high availability and replication, autoscalling for scaling and loadbalancing for load management.
 
 The project makes heavy use of modules and has been dynamically designed to make it easy to replicate across environments.
 
